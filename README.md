@@ -1,6 +1,10 @@
 # Hotel Database Management System
 Authors: Zergio Ruvalcaba & Vincent Raimondi
 
+## Entity-Relationship Diagram
+
+ ![ER Diagram:](https://github.com/Zorten/Hotel-DB/blob/main/Images/ER-diagram.png)
+
 ## Implementation
 
 ### Functions Implemented by Zergio:
@@ -78,5 +82,7 @@ We did not include any Triggers or Stored Procedures in our project. We did incl
 
 To format the output to the console in order for it to be more easily readable, we edited the executeQueryAndPrintResult() function. Instead of simply outputting to console, we first used the String.format() method. For the column names, we used a String Builder, to which we appended the name of a column, preppended with a ‘|’ and followed by a set amount of white space. For the actual data in the rows, we used a regular String which we also formatted to have a set amount of white space after the row, also preppended by a ‘|’ character. This allows for all the columns and rows to be neatly aligned. 
 
-
+* Output of viewRecentUpdates() Before and After Formatting:
+ ![Before:](https://github.com/Zorten/Hotel-DB/blob/main/Images/Output1.png)
+ ![After:](https://github.com/Zorten/Hotel-DB/blob/main/Images/Output2.png)
 
