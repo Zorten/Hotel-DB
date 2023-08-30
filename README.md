@@ -5,6 +5,23 @@ Authors: Zergio Ruvalcaba & Vincent Raimondi
 
  ![ER Diagram:](https://github.com/Zorten/Hotel-DB/blob/main/Images/ER-diagram.png)
 
+ List of Relationships + Constraints & Assumptions Made:
+
+ * Hotel is a strong entity with Hotel ID as its primary key
+* Maintenance Company is a strong entity with Company ID as its primary key
+* We created a User entity to add an ISA hierarchy, with Manager and Customer entities as subclasses. They share attributes like Email, Password, and User ID.
+* The Manager and Customers entities utilize User ID as their primary key inherited from the User entity in the ISA hierarchy.
+* Booking History is a weak entity (no primary key) relying on the Views relationship with the Customers entity. The relation uses UserID as a foreign key.
+* Room is a weak entity (no primary key) relying on the Hotel relationship.
+* The Views relation is 1:1 since each Customer's Booking History is private and associated with that Customer only.
+* The Browse relation is M:N, allowing each Customer to browse multiple hotels and each Hotel to be browsed by many Customers.
+* The Book relation is 1:M, allowing each Customer to book multiple rooms, but each Room to be booked by one Customer.
+* The Manages relation is 1:M with mandatory participation from the Hotel side. A Manager can manage many Hotels, but each Hotel has only one Manager.
+* The HasAvailable relation identifies the weak Room entity's availability. It is 1:M since a Hotel can have multiple available Rooms, but each Room is available only in one Hotel.
+* The PlaceRequest relation is 1:M, allowing each Manager to place service requests on many Rooms, but each Room can have a request placed by one Manager.
+* The relation between Manager and Room entities (PlaceRequest) is in an aggregation.
+* The HandleRequest relation connects the Manager-Room aggregation and Maintenance Company. It is 1:M, as a Maintenance Company can handle multiple requests, but each Room's request is handled by only one Maintenance Company.
+
 ## Implementation
 
 ### Functions Implemented by Zergio:
