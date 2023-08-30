@@ -1,9 +1,9 @@
 # Hotel Database Management System
 Authors: Zergio Ruvalcaba & Vincent Raimondi
 
-##Implementation
+## Implementation
 
-###Functions Implemented by Zergio:
+### Functions Implemented by Zergio:
 
 * viewHotels(esql)
   * This function outputs the information for hotels within 30 distance units of the latitude and longitude values inputted by the user 
@@ -34,7 +34,7 @@ Authors: Zergio Ruvalcaba & Vincent Raimondi
   * If the user is a manager, then the function executes a SELECT query on company ID, hotel ID, room number, and repair date from the join of the RoomRepairs and the Hotels relations. This join is performed on the hotel IDs of both relations matching, and on the managerUserID of the Hotels relation being equal to the current user ID.
 
 
- ###Functions Implemented by Vincent:
+ ### Functions Implemented by Vincent:
 
 * viewRooms(esql)
   * This function takes in user input of Hotel ID and Date to view the available rooms within that hotel on that specific date.
@@ -59,3 +59,24 @@ Authors: Zergio Ruvalcaba & Vincent Raimondi
   * This function is for managers, so we implement query checks to make sure that current user is a manager and that they manage the user inputted Hotel
   * Initial implementation is to have a SELECT query to get current value of repairID
   * Newest implementation uses the defined function getCurrSeqVal() where we can pass the sequence string of RoomRepairs to get the updated value of repairID – this will properly update the RoomRepairRequests table with the correct repairID. To update the RoomRepairs table with the correct repairDate attribute, we utilized the CURRENT_DATE function.
+
+## Indexes, Triggers, and Stored Procedures
+
+We did not include any Triggers or Stored Procedures in our project. We did include some indexes on columns we used several times in our queries. We used these in hopes to optimize our queries. Below are the indexes we created.
+
+* hotel_location: Hotel relation; latitude and longitude attributes. Meant to optimize viewHotels() function.
+
+* room_id: Rooms relation; hotelID and roomNumber attributes. Meant to optimize queries where we have to identify a specific room in a hotel, like in the bookRooms query
+
+* user_id: Users relation; userID attribute. Meant to optimize queries to identify users, like the check we do to see if a user is a manager
+
+* manager_user_id: Hotel relation; managerUserID attribute. Meant to optimize queries where we have to check the manager of a hotel, like viewRoomRepairHistory()
+ 
+* room_booking_room_number: RoomBookings; roomNumber attribute. Meant to optimize queries on the room number, like for ViewRooms()
+
+## Formatting the Output
+
+To format the output to the console in order for it to be more easily readable, we edited the executeQueryAndPrintResult() function. Instead of simply outputting to console, we first used the String.format() method. For the column names, we used a String Builder, to which we appended the name of a column, preppended with a ‘|’ and followed by a set amount of white space. For the actual data in the rows, we used a regular String which we also formatted to have a set amount of white space after the row, also preppended by a ‘|’ character. This allows for all the columns and rows to be neatly aligned. 
+
+
+
